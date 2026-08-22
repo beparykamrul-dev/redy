@@ -36,6 +36,7 @@
 - Approval Engine
 - Workflow Orchestrator
 - Secrets / Identity
+- Protocol Profile Manager
 
 ### 03 — FTN Socket / Realtime Layer
 - Socket Gateway
@@ -163,12 +164,28 @@
 - BGP
 - NetFlow
 - eBPF / XDP
-- WireGuard
 - Network Automation
 - Auto Discovery
 - Auto Provisioning
 
-### 10 — DNS / Global Mesh
+### 10 — FTN Secure Access / Tunnel Platform
+- WireGuard — primary modern tunnel
+- AmneziaWG — controlled WireGuard-compatible profile
+- OpenVPN 3 — cross-platform VPN
+- Hysteria2 — QUIC-based edge transport
+- Shadowsocks — controlled proxy transport
+- FTN Proxy Gateway
+- Aether-Core — transport / policy orchestration layer
+- GRE Tunnel — trusted network encapsulation
+- SSLH Multiplexer — edge protocol multiplexer
+- PPTP — legacy compatibility, isolated / deprecated
+- Protocol Profile Manager
+- Session Registry
+- Route Policy
+- Health / Failover
+- Access Telemetry
+
+### 11 — DNS / Global Mesh
 - PowerDNS
 - CoreDNS
 - Unbound
@@ -178,7 +195,7 @@
 - DNS Provider Integrations
 - DNS Health / Failover
 
-### 11 — Unified Database Platform
+### 12 — Unified Database Platform
 - PostgreSQL
 - TimescaleDB
 - Redis
@@ -196,7 +213,7 @@
 - Replication
 - Data Retention / Lifecycle
 
-### 12 — Monitoring / Observability
+### 13 — Monitoring / Observability
 - Prometheus
 - Grafana
 - Loki
@@ -211,12 +228,14 @@
 - Billing Metrics
 - Payment Gateway Metrics
 - Call Center Metrics
+- VPN / Proxy Metrics
+- Certificate / PKI Metrics
 - AI Metrics
 - AI Anomaly Detection
 - SLO / SLA Monitoring
 - Central Alerting
 
-### 13 — FTN Applications
+### 14 — FTN Applications
 - FTN Connect
 - FTN Tunnel
 - IPTV
@@ -226,7 +245,7 @@
 - Billing App
 - Support / Call Center App
 
-### 14 — Portals
+### 15 — Portals
 - Super Admin
 - Admin
 - Engineer
@@ -237,9 +256,16 @@
 - Call Center Agent
 - Billing Operator
 
-### 15 — Security
-- mTLS / PKI
-- TPM / HSM
+### 16 — Security / PKI
+- Root CA
+- Intermediate CA
+- Node Certificates
+- Service Certificates
+- Client Certificates
+- mTLS
+- Certificate Rotation
+- Revocation / Status
+- TPM / HSM Integration
 - Post-Quantum Cryptography
 - RBAC
 - Secrets Management
@@ -249,7 +275,7 @@
 - AI Permission Boundary
 - Approval-first Actions
 
-### 16 — DevOps / Deployment
+### 17 — DevOps / Deployment
 - Docker
 - Kubernetes / K3s
 - CI/CD
@@ -260,19 +286,35 @@
 - Rolling Updates
 - Service Versioning
 
+### 18 — FTN Brand System
+- Primary FTN Orbital Network Emblem
+- FTN / Family Time Network Wordmark
+- Blue + Electric Green + Metallic Silver visual system
+- Dark Infrastructure UI
+- Shared Web / Android Design System
+- NOC / Monitoring Branding
+- Billing / Call Center Branding
+- Network Access Branding
+- Documentation Branding
+- Logo clear-space / aspect-ratio rules
+
 ## Core Platform Relationships
 
 FTN Kernel → FTN Core / OS → Control Plane → Socket / Event Fabric → Services
 
-AI ↔ Control Plane ↔ Socket ↔ Network / Billing / Monitoring / Call Center
+AI ↔ Control Plane ↔ Socket ↔ Network / Access / Billing / Monitoring / Call Center
 
-Web App Builder ↔ API + Socket + Unified Database
+Web App Builder ↔ API + Socket + Unified Database + Shared Brand System
 
-Android App Builder ↔ API + Socket + Unified Database
+Android App Builder ↔ API + Socket + Unified Database + Shared Brand System
 
 Billing Gateway ↔ Billing Core ↔ Payment Providers ↔ Unified Ledger
 
 AI Call Center ↔ Telephony Gateway ↔ Socket ↔ Customer / Billing / Network / Ticketing
+
+Access Gateway ↔ Protocol Profiles ↔ Aether-Core Policy Layer ↔ FTN Core / POP Network
+
+PKI ↔ Identity ↔ mTLS ↔ Control Plane ↔ Access / Services / Nodes
 
 Monitoring → Metrics / Logs / Events → AI Diagnostics → Alerting → Approval-controlled Automation
 
