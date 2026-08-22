@@ -48,6 +48,7 @@
 - Billing ↔ Gateway
 - Call Center ↔ Customer / Agent
 - Monitoring ↔ Control Plane
+- DNS ↔ Control Plane
 - Event Bus
 - Connection Registry
 - Heartbeat / Health Check
@@ -74,6 +75,7 @@
 - AI Billing Agent
 - AI Customer Support Agent
 - AI Call Center Agent
+- AI DNS / Geo Routing Analysis
 - AI Approval Layer
 
 ### 05 — Web App Builder
@@ -186,16 +188,39 @@
 - Access Telemetry
 
 ### 11 — DNS / Global Mesh
-- PowerDNS
-- CoreDNS
-- Unbound
-- dnsdist
+- PowerDNS — authoritative / API-managed zones
+- CoreDNS — service / cloud-native DNS
+- Unbound — validating recursive resolver
+- dnsdist — DNS traffic distribution / policy
+- Hickory DNS — Rust authoritative / recursive DNS component
 - Anycast
-- DNS Mesh
+- Global DNS Mesh
+- GeoIP-aware DNS policy
+- Region / Country / ASN routing policy
+- Health-based DNS failover
 - DNS Provider Integrations
+- DNSSEC
+- DoT / DoH policy where supported
 - DNS Health / Failover
+- DNS Metrics / Query Logging
 
-### 12 — Unified Database Platform
+### 12 — GeoIP / Geo Routing Platform
+- GeoIP Provider Abstraction
+- Country / Region / City lookup
+- ASN / Network lookup
+- IPv4 / IPv6 support
+- Local GeoIP cache
+- Versioned GeoIP datasets
+- Dataset integrity / provenance
+- GeoIP API
+- DNS Geo Steering
+- POP selection
+- CDN / Edge routing policy
+- Failover-aware routing
+- Privacy-aware retention
+- AI-assisted routing analysis
+
+### 13 — Unified Database Platform
 - PostgreSQL
 - TimescaleDB
 - Redis
@@ -204,6 +229,7 @@
 - Configuration Data
 - Customer / Billing Data
 - Network Inventory
+- GeoIP Metadata / Dataset Version Metadata
 - Metrics Data
 - Event Data
 - Audit Data
@@ -213,7 +239,7 @@
 - Replication
 - Data Retention / Lifecycle
 
-### 13 — Monitoring / Observability
+### 14 — Monitoring / Observability
 - Prometheus
 - Grafana
 - Loki
@@ -225,6 +251,8 @@
 - Kernel Metrics
 - Socket Metrics
 - Database Metrics
+- DNS Metrics
+- Geo Routing Metrics
 - Billing Metrics
 - Payment Gateway Metrics
 - Call Center Metrics
@@ -235,7 +263,7 @@
 - SLO / SLA Monitoring
 - Central Alerting
 
-### 14 — FTN Applications
+### 15 — FTN Applications
 - FTN Connect
 - FTN Tunnel
 - IPTV
@@ -245,7 +273,7 @@
 - Billing App
 - Support / Call Center App
 
-### 15 — Portals
+### 16 — Portals
 - Super Admin
 - Admin
 - Engineer
@@ -256,7 +284,7 @@
 - Call Center Agent
 - Billing Operator
 
-### 16 — Security / PKI
+### 17 — Security / PKI
 - Root CA
 - Intermediate CA
 - Node Certificates
@@ -275,7 +303,7 @@
 - AI Permission Boundary
 - Approval-first Actions
 
-### 17 — DevOps / Deployment
+### 18 — DevOps / Deployment
 - Docker
 - Kubernetes / K3s
 - CI/CD
@@ -286,7 +314,7 @@
 - Rolling Updates
 - Service Versioning
 
-### 18 — FTN Brand System
+### 19 — FTN Brand System
 - Primary FTN Orbital Network Emblem
 - FTN / Family Time Network Wordmark
 - Blue + Electric Green + Metallic Silver visual system
@@ -295,6 +323,7 @@
 - NOC / Monitoring Branding
 - Billing / Call Center Branding
 - Network Access Branding
+- DNS / Geo Routing Branding
 - Documentation Branding
 - Logo clear-space / aspect-ratio rules
 
@@ -302,7 +331,11 @@
 
 FTN Kernel → FTN Core / OS → Control Plane → Socket / Event Fabric → Services
 
-AI ↔ Control Plane ↔ Socket ↔ Network / Access / Billing / Monitoring / Call Center
+AI ↔ Control Plane ↔ Socket ↔ Network / Access / DNS / Geo Routing / Billing / Monitoring / Call Center
+
+DNS Mesh ↔ dnsdist ↔ PowerDNS / CoreDNS / Unbound / Hickory DNS
+
+GeoIP Engine → Geo Policy → DNS Steering → POP Selection → Health / Failover
 
 Web App Builder ↔ API + Socket + Unified Database + Shared Brand System
 
