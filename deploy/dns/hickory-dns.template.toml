@@ -1,0 +1,33 @@
+# FTN Hickory DNS enterprise template
+# Pin the exact Hickory DNS release in the deployment image/package pipeline.
+# Keep this template environment-specific; do not place secrets here.
+
+[[zones]]
+name = "example.invalid."
+zone_type = "Primary"
+
+# Bind addresses are supplied by the deployment environment.
+# Keep management and public DNS listeners separated where possible.
+
+# Example production policy layers:
+# - authoritative zones
+# - recursive resolver policy
+# - DNSSEC validation/signing as required
+# - metrics endpoint
+# - health/readiness integration
+# - controlled dynamic update path
+
+# FTN GeoIP is intentionally outside the DNS server configuration.
+# The FTN DNS policy service evaluates GeoIP and health signals, then
+# supplies a validated routing decision to the DNS edge/control layer.
+
+# Architecture:
+# Client -> dnsdist -> FTN DNS Policy -> GeoIP + POP health ->
+# PowerDNS/CoreDNS/Hickory -> response
+
+# Security:
+# - Control-plane changes require authenticated API access.
+# - mTLS is used for management/event channels where configured.
+# - DNSSEC is enabled according to zone policy.
+# - Secrets/certificates are injected by the deployment secret manager.
+# - Last-known-good configuration remains available during control-plane loss.
