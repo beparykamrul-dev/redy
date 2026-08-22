@@ -1,0 +1,53 @@
+# FTN DNS Stack Template
+# Declarative template. Values are examples and must be reviewed before deployment.
+apiVersion: ftn.redy/v1
+kind: DNSStack
+metadata:
+  name: ftn-dns
+spec:
+  role: recursive-authoritative-edge
+  listen:
+    address: 0.0.0.0
+    port: 53
+    protocols: [udp, tcp]
+  profiles:
+    authoritative:
+      enabled: true
+      engine: powerdns
+    recursive:
+      enabled: true
+      engine: unbound
+    edge:
+      enabled: true
+      engine: dnsdist
+    cluster:
+      enabled: true
+      engine: coredns
+  upstreams:
+    - name: upstream-1
+      address: 1.1.1.1
+    - name: upstream-2
+      address: 9.9.9.9
+  health:
+    enabled: true
+    interval: 10s
+    timeout: 2s
+  security:
+    dnssec: true
+    recursion_acl: private-networks-only
+    zone_transfer_acl: explicit-only
+    api_bind: loopback-or-mtls
+  observability:
+    metrics: true
+    structured_logs: true
+    audit: true
+  persistence:
+    database: postgresql
+    migrations: required
+  control_plane:
+    managed: true
+    socket_events: true
+  deployment:
+    mode: systemd-or-container
+    auto_restart: true
+    backup_before_change: true
